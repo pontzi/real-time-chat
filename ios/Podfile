@@ -10,6 +10,8 @@ target 'chat' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'chatTests' do
     inherit! :complete
     # Pods for testing
