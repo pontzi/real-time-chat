@@ -1,20 +1,44 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  Platform,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  View,
+  LogBox,
+} from 'react-native';
+import {GiftedChat} from 'react-native-gifted-chat';
+import Fire from '../Fire';
 
-const ChatScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>ChatScreen.js</Text>
-    </View>
+const ChatScreen = (props) => {
+  const [state, setState] = useState({messages: []});
+  useEffect(() => {
+    LogBox.ignoreAllLogs();
+    Fire.get((message) =>
+      setState((previous) => ({
+        ...state,
+        messages: GiftedChat.append(previous.messages, message),
+      })),
+    );
+
+    return () => {
+      Fire.off();
+    };
+  }, []);
+  const getUser = () => {
+    return {
+      _id: Fire.uid,
+      name: props.route.params.username,
+    };
+  };
+  const userData = getUser();
+
+  const chat = (
+    <GiftedChat messages={state.messages} onSend={Fire.send} user={userData} />
   );
+  if (Platform.OS == 'android') {
+    return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
+  }
+  return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 export default ChatScreen;

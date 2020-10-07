@@ -14,7 +14,7 @@ const LoginScreen = (props) => {
   const {username} = state;
 
   const continueToChat = () => {
-    props.navigation.navigate('Chat', username);
+    props.navigation.navigate('Chat', {username});
   };
   return (
     <LinearGradient colors={['#D9AFD9', '#97D9E1']} style={styles.container}>
