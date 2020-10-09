@@ -1,11 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Platform,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  View,
-  LogBox,
-} from 'react-native';
+import {SafeAreaView, LogBox} from 'react-native';
 import {GiftedChat} from 'react-native-gifted-chat';
 import Fire from '../Fire';
 
@@ -35,9 +29,6 @@ const ChatScreen = (props) => {
   const chat = (
     <GiftedChat messages={state.messages} onSend={Fire.send} user={userData} />
   );
-  if (Platform.OS == 'android') {
-    return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
-  }
   return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
 };
 
