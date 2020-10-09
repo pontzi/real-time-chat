@@ -1,34 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {SafeAreaView, LogBox} from 'react-native';
-import {GiftedChat} from 'react-native-gifted-chat';
-import Fire from '../Fire';
-
+import React from 'react';
+import {SafeAreaView} from 'react-native';
+import useChatScreen from './hooks/useChatScreen';
 const ChatScreen = (props) => {
-  const [state, setState] = useState({messages: []});
-  useEffect(() => {
-    LogBox.ignoreAllLogs();
-    Fire.get((message) =>
-      setState((previous) => ({
-        ...state,
-        messages: GiftedChat.append(previous.messages, message),
-      })),
-    );
-
-    return () => {
-      Fire.off();
-    };
-  }, []);
-  const getUser = () => {
-    return {
-      _id: Fire.uid,
-      name: props.route.params.username,
-    };
-  };
-  const userData = getUser();
-
-  const chat = (
-    <GiftedChat messages={state.messages} onSend={Fire.send} user={userData} />
-  );
+  const chat = useChatScreen(props);
   return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
 };
 
