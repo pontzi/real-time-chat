@@ -1,6 +1,6 @@
 # A real-time chat implemented with Firebase and React Native (Compatible for Android and IOS)
 
-##### How does it looks?
+## How does it looks?
 
 ![Login](./src/images/login.png)
 
