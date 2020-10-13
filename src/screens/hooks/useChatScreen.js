@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {LogBox} from 'react-native';
-import Fire from '../../Fire';
+import Fire from '../../../Fire';
+
 const useChatScreen = (props) => {
   const [state, setState] = useState({messages: []});
   useEffect(() => {

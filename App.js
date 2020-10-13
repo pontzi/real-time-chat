@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 //Screens
-import ChatScreen from './screens/ChatScreen';
-import LoginScreen from './screens/LoginScreen';
+import ChatScreen from './src/screens/ChatScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 const Stack = createStackNavigator();
 
